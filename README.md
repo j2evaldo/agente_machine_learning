@@ -1,4 +1,4 @@
-# Multi-Agent Statistical Machine Learning Framework (OpenCode)
+# Multi-Agent Statistical & Econometric Framework (OpenCode)
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Harness%20AI-blueviolet?style=flat)](https://opencode.ai)
@@ -6,57 +6,67 @@
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![uv](https://img.shields.io/badge/Packaging-uv-261230?style=flat&logo=astral)](https://github.com/astral-sh/uv)
 
-Framework autonomo e modular de Ciencia de Dados baseado em agentes no terminal (OpenCode), desenhado para unir rigor estatistico, econometria, governanca de modelagem e alinhamento a objetivos de negocio.
+Framework autônomo e modular de Ciência de Dados e Econometria baseado em agentes no terminal (OpenCode). Projetado para unir rigor estatístico, inferência causal, governança em modelagem e impacto financeiro nas decisões de negócio.
 
 ---
 
 ## 1. Proposta do Projeto
 
-O objetivo deste framework e mitigar falhas comuns no ciclo de modelagem, tais como violacoes de premissas estatisticas, escopo de negocio mal delimitado e falta de interpretabilidade em setores regulados.
+O framework estrutura o ciclo de vida analítico (CRISP-DM) com governança estrita e isolamento de contexto entre subagentes:
 
-A estrutura implementa agentes especializados com contexto efemero e isolamento de tarefas, estruturados no fluxo CRISP-DM:
-
-1. **Entendimento e Escopo de Negocio:** Mapeamento de dores, custos de erro (FP/FN) e restricoes antes da escrita de codigo.
-2. **Analise Exploratoria e Inferencial:** Testes de hipoteses bivariados (Qui-Quadrado, Mann-Whitney U) e calculo de Information Value (IV).
-3. **Auditoria de Premissas Estatisticas:** Validacao de linearidade no logit por decis, controle de multicolinearidade (VIF) e codificacao estrita de variaveis dummy (n-1).
-4. **Otimizacao por Objetivo de Negocio:** Diagnostico voltado para Decisao (threshold otimo), Ordenacao (ROC-AUC, KS, Lift) ou Estimacao (RMSE, Calibracao, Valor Esperado).
+1. **Discovery & Scoping:** O `@orchestrator` sabatina o usuário sobre dores de negócio, janelas do alvo, restrições operacionais e Unit Economics (matriz de custos FP/FN) antes de liberar qualquer execução.
+2. **Auditoria Estrutural & Triagem (EDA):** Verificação de integridade, prevenção de *target leakage*, testes de hipóteses formais (Mann-Whitney, $\chi^2$) e triagem de preditores via Information Value (IV) e Weight of Evidence (WoE).
+3. **Modelagem Paramétrica & GLM:** Regressão Logística com checagem de linearidade no logit por decis, codificação $n-1$, Efeitos Marginais Médios (AME em p.p.) e otimização financeira de threshold ($c^*$).
+4. **Econometria Clássica & Causalidade:** Regressão linear OLS (Wooldridge), validação das hipóteses de Gauss-Markov, matriz de covariância robusta (Huber-White HC3), cálculo de elasticidades e otimização de precificação ($P^*$).
 
 ---
 
-## 2. Arquitetura do Sistema de Agentes
+## 2. Arquitetura do Sistema de Agentes & Skills
 
-Fluxo de trabalho:
+### Subagentes (`.opencode/agents/`)
+- **`@orchestrator` (Analytics Tech Lead & Discovery)**
+  - Condução dos 5 Pilares de Discovery de Negócio.
+  - Formalização do *Scoping Charter* (Portão de Aprovação).
+  - Roteamento e síntese de relatórios executivos com impacto financeiro em R$.
 
-- **@orchestrator (Lead Tech)**
-  - Business Scoping e Dores
-  - Formulacao Matematica
-  - Roteamento e Planejamento
-  - *Delega para:* @eda_specialist, @logit_specialist e @ml_scientist
+- **`@logit_specialist` (GLM & Classificação Comercial)**
+  - Auditoria de premissas (logit empírico, VIF, categorias de referência).
+  - Tradução de Odds Ratios e Efeitos Marginais (AME em pontos percentuais).
+  - Avaliação nos 3 Objetivos: **Decidir** (Threshold $c^*$), **Ordenar** (Lift/KS) e **Estimar** (Brier Score/Calibração).
 
-- **@eda_specialist (Inferencia e Qualidade)**
-  - Testes t e Mann-Whitney U
-  - Teste Qui-Quadrado de Independencia
-  - Information Value (IV) e Weight of Evidence (WoE)
-  - Auditoria de nulos, cardinalidade e distribuicoes
+- **`@linear_regression_wooldridge` (Econometria & Causalidade)**
+  - Validação de Gauss-Markov (BLUE), testes de Breusch-Pagan, White e Ramsey RESET.
+  - Correção obrigatória de heterocedasticidade com erros robustos HC3.
+  - Matriz de elasticidades comerciais e otimizador de preço ótimo ($P^*$).
 
-- **@logit_specialist (Modelagem Parametrica e GLM)**
-  - Linearidade com logit por decis
-  - Codificacao de dummies (regra n-1)
-  - Odds Ratios com intervalos de confianca
-  - Otimizacao de threshold financeiro
-
-- **@ml_scientist (Modelos Nao-Lineares)**
-  - Modelos de Gradient Boosting (CatBoost, LightGBM)
-  - Validacao cruzada e ajuste de hiperparametros
-  - Analises comparativas de benchmark
+### Skills Compartilhadas (`src/skills/`)
+- **`eda_tools.py`**: Funções modulares de auditoria de nulos, detecção de *leakage*, cálculo de WoE/IV, testes bivariados e geração de dashboards 2x2.
 
 ---
 
-## 3. Diretrizes de Otimizacao por Objetivo de Negocio
+## 3. Diretrizes de Decisão por Paradigma Comercial
 
-- **Decidir:** Foco em acao individual binaria (aprovar/recusar, intervir/nao intervir). Metrica principal: Threshold financeiro otimo maximizando lucro esperado total.
-- **Ordenar:** Foco em capacidade operacional limitada (acionamento em ranking/fila). Metrica principal: Curva ROC-AUC, Estatistica KS e Cumulative Lift nos decis superiores.
-- **Estimar:** Foco em avaliacao atuarial e perda financeira esperada da carteira. Metrica principal: Calibracao de probabilidade, Brier Score e RMSE.
+```text
+                               ┌──────────────────────────────────────────────┐
+                               │         DEMANDA / DOR DE NEGÓCIO             │
+                               └──────────────────────┬───────────────────────┘
+                                                      │
+         ┌────────────────────────────────────────────┴────────────────────────────────────────────┐
+         ▼                                                                                         ▼
+┌─────────────────────────────────┐                                                       ┌─────────────────────────────────┐
+│     ALAVANCAS CAUSAIS & PREÇO   │                                                       │     PROBABILIDADES & EVENTOS    │
+│ (Elasticidade, Ceteris Paribus) │                                                       │ (Conversão, Churn, Fraude, Lead)│
+└────────────────┬────────────────┘                                                       └────────────────┬────────────────┘
+                 │                                                                                         │
+                 ▼                                                                                         ▼
+┌─────────────────────────────────┐                                                       ┌─────────────────────────────────┐
+│ @linear_regression_wooldridge   │                                                       │       @logit_specialist         │
+│ • Elasticidade Preço/Demanda    │                                                       │ • DECIDIR (Threshold c*, Unit   │
+│ • Retornos Decrescentes Marketing│                                                      │   Economics: FP/FN)             │
+│ • Gauss-Markov & Erros HC3      │                                                       │ • ORDENAR (Lift decil, KS, AUC) │
+└─────────────────────────────────┘                                                       │ • ESTIMAR (Brier Score, ECE)    │
+                                                                                          └─────────────────────────────────┘
+```
 
 ---
 
@@ -67,32 +77,44 @@ Fluxo de trabalho:
 ├── .opencode/
 │   └── agents/
 │       ├── orchestrator.md
-│       ├── eda_specialist.md
 │       ├── logit_specialist.md
-│       └── ml_scientist.md
+│       └── linear_regression_wooldridge.md
+├── src/
+│   ├── __init__.py
+│   ├── skills/
+│   │   ├── __init__.py
+│   │   └── eda_tools.py
+│   └── models/
+│       ├── __init__.py
+│       ├── logit_model.py
+│       └── linear_model.py
+├── tests/
+│   ├── __init__.py
+│   └── test_eda_tools.py
+├── notebooks/
+├── data/
+│   └── raw/
 ├── AGENTS.md
 ├── pyproject.toml
-├── src/
-├── notebooks/
-└── tests/
+└── README.md
 ```
 
 ---
 
-## 5. Instrucoes de Execucao
+## 5. Instruções de Execução
 
-### Pre-requisitos
+### Pré-requisitos & Instalação
 
-Instalacao do gerenciador de dependencias uv:
+Gerenciamento de dependências via `uv`:
 
 ```bash
-curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | sh
+# Sincronizar o ambiente virtual e dependências
 uv sync
 ```
 
-### Inicializacao do Ambiente
+### Inicialização do OpenCode
 
-Abra a sessao do OpenCode na raiz do projeto:
+Inicie o assistente a partir da raiz do repositório:
 
 ```bash
 opencode
@@ -100,19 +122,22 @@ opencode
 
 ### Exemplo de Uso
 
-Inicie o contato acionando o orquestrador para definir o escopo:
+Inicie sempre pelo orquestrador para realizar o enquadramento de negócio:
 
 ```text
-> @orchestrator Preciso construir um modelo de concessao de credito para clientes PJ.
+> @orchestrator Preciso estimar a elasticidade-preço da nossa linha de produtos e recomendar o preço ótimo de venda.
 ```
 
-O orquestrador fara as perguntas de escopo estrategico antes de coordenar as analises estatisticas e a modelagem.
+O `@orchestrator` abrirá a sabatina de Discovery antes de delegar a análise econométrica para o `@linear_regression_wooldridge`.
 
 ---
 
-## 6. Testes e Validacao de Codigo
+## 6. Testes e Qualidade de Código
 
 ```bash
+# Execução da suíte de testes
 uv run pytest -v
+
+# Validação e formatação de código
 uv run ruff check .
 ```
