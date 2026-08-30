@@ -34,7 +34,12 @@
 ## 7. Padrões de Modelagem, Persistência e Recomendações de Negócio
 - Todo processo de modelagem deve salvar a base final com predições/escores em `data/processed/[nome_projeto]_scored.csv`.
 - Modelos serializados e matrizes de parâmetros devem ser salvos em `models/`.
-- Os notebooks de modelagem devem conter obrigatoriamente uma seção final intitulada "Plano de Ação e Recomendações de Negócio", detalhando:
-  1. Decisão Ótima: Limiar de probabilidade ótimo (c*) ou Preço ótimo (P*) com impacto financeiro estimado em R$.
-  2. Alavancas Práticas: Ações recomendadas para as equipes de negócio baseadas nos coeficientes e efeitos marginais (AME).
-  3. Matriz de Risco e Trade-offs: Custos de oportunidade e limites da capacidade operacional.
+- **Uso de Skills Determinísticas:** É obrigatório utilizar as funções de `src/skills/decision_tools.py` e `src/skills/eda_tools.py` para auditorias, curvas de lucro e simulações de capacidade, evitando loops manuais nos notebooks.
+- **Calibração e Capacidade:** Modelos voltados para decisão financeira devem:
+  1. Utilizar `class_weight=None` no Scikit-Learn para manter equivalência com Statsmodels
+  2. Realizar análises de capacidade na base completa (n_total), não apenas na partição de teste
+  3. Documentar justificativa para a estratégia de threshold utilizada (c* teórico vs Top-K)
+- **Seção de Fechamento:** Os notebooks de modelagem devem conter obrigatoriamente uma seção final intitulada "Resumo Executivo", estruturada por audiência:
+  1. **Decisão Financeira Ótima** (destaque principal para executivos): Limiar de probabilidade ótimo (c*) e resultado financeiro líquido projetado em R$.
+  2. **Alavancas Práticas** (ação imediata para o time de negócio): Quem atacar (perfil de risco), o que oferecer (bundle, desconto, fidelização) e métricas de impacto em p.p.
+  3. **Diagnóstico Técnico** (seção à parte para validação do modelo): Métricas de ajuste (Pseudo R2, AUC, Brier Score) e testes de premissas — conteúdo opcional para executivos, obrigatório para auditória técnica.
