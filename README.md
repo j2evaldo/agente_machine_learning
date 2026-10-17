@@ -32,6 +32,9 @@ O framework estrutura o ciclo de vida analítico (CRISP-DM) com governança estr
   * Isolamento de efeito de tratamento via Double Machine Learning (DML), Propensity Score Matching e testes de refutação (placebo).
 * **`@linear_regression_wooldridge` (Econometria OLS)**
   * Validação das 6 premissas de Gauss-Markov (BLUE), erros robustos HC3 e cálculo de elasticidades de preço/demanda.
+* **`@recommender_specialist` (Sistemas de Recomendação)**
+  * Arquitetura Collector-Ranker-Server, Filtragem Colaborativa, Fatoração Matricial (iALS/BPR).
+  * Métricas de ranking (MAP@K, NDCG@K, Hit Rate@K), Cobertura de Catálogo, Índice de Gini e exploração epsilon-greedy.
 
 --------------------------------------------------------------------------------
 
@@ -75,31 +78,41 @@ Toda modelagem deve reportar a matriz de desempenho no conjunto Out-Of-Time (`D_
 │ Fase 5  │ @orchestrator                 │ Síntese Executiva, Explicabilidade e ROI Financeiro   │
 └─────────┴───────────────────────────────┴───────────────────────────────────────────────────────┘
 ```
+> Rotas alternativas de modelagem conforme o paradigma analítico: `@classification_specialist` (Decidir/Ordenar/Estimar), `@logit_specialist` (GLM interpretável), `@causal_specialist` e `@linear_regression_wooldridge` (Causalidade/Elasticidade) e `@recommender_specialist` (Personalização/Ranking).
 
 --------------------------------------------------------------------------------
 
 #### **5. Estrutura do Repositório**
 ```text
 .
+├── AGENTS.md                           # Governança global (carregado automaticamente pelo opencode)
+├── opencode.json                       # Configuração do opencode ($schema e instruções)
 ├── .opencode/
-│   ├── instructions.md                 # Governança global de código, estilo e runtime
-│   └── agents/
-│       ├── orchestrator.md             # Discovery, Scoping Charter e Governança do DAG
-│       ├── eda_specialist.md           # Auditoria de dados, Leakage e Testes Bivariados
-│       ├── feature_engineering_spec.md  # Engine de Atributos, Fit/Transform e Rolling Windows
-│       ├── classification_specialist.md# CatBoost, Boruta/ARFS, TreeSHAP e Calibração
-│       ├── logit_specialist.md         # GLM, Odds Ratios, AME e Controle de VIF
-│       ├── causal_specialist.md        # Double ML, Propensity Score e Testes Cautelares
-│       └── linear_regression_wooldridge.md # OLS Econométrico, Gauss-Markov e Elasticidades
+│   ├── agents/
+│   │   ├── orchestrator.md             # Discovery, Scoping Charter e Governança do DAG
+│   │   ├── eda_specialist.md           # Auditoria de dados, Leakage e Testes Bivariados
+│   │   ├── feature_engineering_specialist.md # Engine de Atributos, Fit/Transform e Rolling Windows
+│   │   ├── classification_specialist.md# CatBoost, Boruta/ARFS, TreeSHAP e Calibração
+│   │   ├── logit_specialist.md         # GLM, Odds Ratios, AME e Controle de VIF
+│   │   ├── causal_specialist.md        # Double ML, Propensity Score e Testes Cautelares
+│   │   ├── linear_regression_wooldridge.md # OLS Econométrico, Gauss-Markov e Elasticidades
+│   │   └── recommender_specialist.md   # Collector-Ranker-Server, iALS/BPR e Métricas de Ranking
+│   ├── commands/                       # Comandos customizados do opencode (opcional)
+│   └── skills/                         # Skills nativas do opencode (opcional)
 ├── src/
 │   ├── __init__.py
 │   ├── skills/
-│   └── models/
-├── notebooks/
+│   │   ├── eda_tools.py                # Auditoria, Testes Bivariados e WoE/IV
+│   │   ├── decision_tools.py           # Threshold c*, Curvas de Lucro e Capacidade Top-K
+│   │   └── recommender_tools.py        # Similaridade, iALS, Métricas de Ranking e e-greedy
+│   └── models/                         # Classes/pipelines de modelo do framework
+├── tests/                              # Suíte de testes (uv run pytest)
+├── notebooks/                          # Entregáveis .ipynb (conteúdo ignorado no Git)
 ├── data/
-│   ├── raw/
-│   ├── interim/
-│   └── processed/
+│   ├── raw/                            # Dados brutos (somente leitura)
+│   ├── interim/                        # Dados intermediários
+│   └── processed/                      # Base final pontuada ([projeto]_scored.csv)
+├── models/                             # Modelos serializados (.pkl)
 ├── pyproject.toml
 └── README.md
 ```

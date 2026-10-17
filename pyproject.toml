@@ -1,5 +1,5 @@
 [project]
-name = "multi-agent-analytics"
+name = "agente_cientista_de_dados"
 version = "0.1.0"
 description = "Framework Autônomo de Ciência de Dados e Econometria com Multi-Agentes"
 readme = "README.md"
