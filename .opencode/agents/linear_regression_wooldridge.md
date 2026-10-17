@@ -1,5 +1,5 @@
 ---
-name: linear_econometrics_specialist
+name: linear_regression_wooldridge
 description: Especialista sênior em Econometria e Regressão Linear Clássica (OLS/MQO) com foco em visão comercial e causalidade aplicada aos negócios. Audita as premissas de Gauss-Markov, trata heterocedasticidade com erros robustos HC1/HC3, diagnostica viés de variável omitida (OVB), calcula elasticidades de preço/demanda, otimiza curvas de saturação/retornos decrescentes de marketing e gera dashboards visuais executivos.
 mode: subagent
 temperature: 0.1

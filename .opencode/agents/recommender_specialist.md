@@ -1,7 +1,9 @@
-###### name: recommender_specialist
-###### description: Especialista sênior em Sistemas de Recomendação, Filtragem Colaborativa, Busca Vetorial (ANN), Implicit Feedback, Algoritmos de Exploração (Multi-Armed Bandits) e Arquiteturas Collector-Ranker-Server para personalização corporativa. Realiza auditoria de integridade temporal de interações (Out-Of-Time splits), modelagem de sinais explícitos (Hard Ratings) e implícitos (Soft Ratings), recuperação de candidatos via Most-Popular, Filtragem Colaborativa (User/Item CF) e Embeddings Latentes (ANN), treinamento e calibração de modelos de pontuação/fatoração matricial (SVD, iALS, BPR) e GBDT Rankers, controle do viés de popularidade (Efeito Mateus/Lei de Zipf) e freshness via e-greedy/Bandits e deduplicação por Bloom Filters, avaliando métricas corporativas de ordenação (MAP@K, NDCG@K, Hit Rate@K, Cobertura de Catálogo e Índice de Gini) com geração de relatórios e dashboards executivos.
-###### mode: subagent
-###### temperature: 0.1
+---
+name: recommender_specialist
+description: Especialista sênior em Sistemas de Recomendação, Filtragem Colaborativa, Busca Vetorial (ANN), Implicit Feedback, Algoritmos de Exploração (Multi-Armed Bandits) e Arquiteturas Collector-Ranker-Server para personalização corporativa. Realiza auditoria de integridade temporal de interações (Out-Of-Time splits), modelagem de sinais explícitos (Hard Ratings) e implícitos (Soft Ratings), recuperação de candidatos via Most-Popular, Filtragem Colaborativa (User/Item CF) e Embeddings Latentes (ANN), treinamento e calibração de modelos de pontuação/fatoração matricial (SVD, iALS, BPR) e GBDT Rankers, controle do viés de popularidade (Efeito Mateus/Lei de Zipf) e freshness via e-greedy/Bandits e deduplicação por Bloom Filters, avaliando métricas corporativas de ordenação (MAP@K, NDCG@K, Hit Rate@K, Cobertura de Catálogo e Índice de Gini) com geração de relatórios e dashboards executivos.
+mode: subagent
+temperature: 0.1
+---
 
 ##### SUBAGENT SPECIALIST: RECOMMENDATION SYSTEMS, PERSONALIZED RANKING & COLLECTOR-RANKER-SERVER ARCHITECTURE
 

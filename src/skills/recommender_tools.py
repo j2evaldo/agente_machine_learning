@@ -8,12 +8,11 @@ Implementa a arquitetura em 3 camadas (Collector, Ranker, Server), métricas de 
 
 import math
 import random
-from typing import Dict, List, Set, Tuple, Union, Optional
+
 import numpy as np
 import pandas as pd
 import scipy.sparse as sp
 from scipy.sparse import csr_matrix
-
 
 # =============================================================================
 # 1. CAMADA 1: COLLECTOR & MATRIZES DE SIMILARIDADE
@@ -83,9 +82,9 @@ def most_popular_recommender(
     train_df: pd.DataFrame,
     user_col: str,
     item_col: str,
-    rating_col: Optional[str] = None,
+    rating_col: str | None = None,
     top_k: int = 10
-) -> List[Union[int, str]]:
+) -> list[int | str]:
     """
     Baseline Most-Popular Item Recommender (MPIR).
     Retorna os itens mais populares com base na contagem ou soma de interações.
@@ -128,7 +127,7 @@ def implicit_als_factorization(
     reg_lambda: float = 0.01,
     n_iterations: int = 15,
     random_state: int = 42
-) -> Tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Fatoração de Matriz via Implicit Alternating Least Squares (iALS)
     para dados de Implicit Feedback.
@@ -219,8 +218,8 @@ def implicit_als_factorization(
 # =============================================================================
 
 def calculate_map_at_k(
-    actual_dict: Dict[Union[int, str], List[Union[int, str]]],
-    predicted_dict: Dict[Union[int, str], List[Union[int, str]]],
+    actual_dict: dict[int | str, list[int | str]],
+    predicted_dict: dict[int | str, list[int | str]],
     k: int = 10
 ) -> float:
     """
@@ -262,8 +261,8 @@ def calculate_map_at_k(
 
 
 def calculate_ndcg_at_k(
-    actual_dict: Dict[Union[int, str], List[Union[int, str]]],
-    predicted_dict: Dict[Union[int, str], List[Union[int, str]]],
+    actual_dict: dict[int | str, list[int | str]],
+    predicted_dict: dict[int | str, list[int | str]],
     k: int = 10
 ) -> float:
     """
@@ -309,8 +308,8 @@ def calculate_ndcg_at_k(
 
 
 def calculate_hit_rate_at_k(
-    actual_dict: Dict[Union[int, str], List[Union[int, str]]],
-    predicted_dict: Dict[Union[int, str], List[Union[int, str]]],
+    actual_dict: dict[int | str, list[int | str]],
+    predicted_dict: dict[int | str, list[int | str]],
     k: int = 10
 ) -> float:
     """
@@ -339,7 +338,7 @@ def calculate_hit_rate_at_k(
 
 
 def calculate_catalog_coverage(
-    predicted_dict: Dict[Union[int, str], List[Union[int, str]]],
+    predicted_dict: dict[int | str, list[int | str]],
     total_catalog_items: int,
     k: int = 10
 ) -> float:
@@ -369,7 +368,7 @@ def calculate_catalog_coverage(
 
 
 def calculate_gini_index(
-    predicted_dict: Dict[Union[int, str], List[Union[int, str]]],
+    predicted_dict: dict[int | str, list[int | str]],
     total_catalog_items: int,
     k: int = 10
 ) -> float:
@@ -382,7 +381,7 @@ def calculate_gini_index(
     float
         Índice de Gini entre [0.0, 1.0]. 0 = perfeitamente igualitário, 1 = item único recomendado.
     """
-    item_counts: Dict[Union[int, str], int] = {}
+    item_counts: dict[int | str, int] = {}
     for recs in predicted_dict.values():
         for item in recs[:k]:
             item_counts[item] = item_counts.get(item, 0) + 1
@@ -405,9 +404,9 @@ def calculate_gini_index(
 # =============================================================================
 
 def bloom_filter_deduplication(
-    recommendations: List[Union[int, str]],
-    consumed_items: Set[Union[int, str]]
-) -> List[Union[int, str]]:
+    recommendations: list[int | str],
+    consumed_items: set[int | str]
+) -> list[int | str]:
     """
     Filtra da lista de recomendações os itens já consumidos pelo usuário.
 
@@ -427,12 +426,12 @@ def bloom_filter_deduplication(
 
 
 def epsilon_greedy_rerank(
-    ranker_recs: List[Union[int, str]],
-    candidate_pool: List[Union[int, str]],
+    ranker_recs: list[int | str],
+    candidate_pool: list[int | str],
     epsilon: float = 0.1,
     top_k: int = 10,
-    random_seed: Optional[int] = 42
-) -> List[Union[int, str]]:
+    random_seed: int | None = 42
+) -> list[int | str]:
     """
     Aplica o algoritmo Epsilon-Greedy para reordenar e injetar itens de exploração
     na lista do Ranker.
@@ -458,7 +457,7 @@ def epsilon_greedy_rerank(
     if random_seed is not None:
         random.seed(random_seed)
 
-    final_feed: List[Union[int, str]] = []
+    final_feed: list[int | str] = []
     seen = set()
 
     ranker_idx = 0

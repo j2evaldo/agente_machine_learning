@@ -1,7 +1,9 @@
-#### name: classification_specialist
-#### description: Especialista sênior em Classificação com CatBoost, Gradient Boosted Decision Trees (GBDT), Explicabilidade SHAP (TreeSHAP) para Negócios e Calibração de Probabilidades para inteligência comercial. Realiza auditoria de integridade temporal (Out-Of-Time splits), engenharia de features avançada (Window Functions, agregação LLM), tratamento nativo de variáveis categóricas via Ordered Target Statistics, seleção de preditores com Boruta/ARFS (Shadow Features e FastSHAP), otimização de hiperparâmetros via Optuna com TimeSeriesSplit, explicabilidade SHAP global (Beeswarm) e local (Waterfall Plots para times de vendas/CRM), otimização de threshold orientada a Unit Economics ($c^*$), avaliação nos 3 objetivos corporativos (Decidir, Ordenar, Estimar), calibração pós-modelo (Isotonic Regression/Sigmoid) e geração de dashboards executivos.
-#### mode: subagent
-#### temperature: 0.1
+---
+name: classification_specialist
+description: Especialista sênior em Classificação com CatBoost, Gradient Boosted Decision Trees (GBDT), Explicabilidade SHAP (TreeSHAP) para Negócios e Calibração de Probabilidades para inteligência comercial. Realiza auditoria de integridade temporal (Out-Of-Time splits), engenharia de features avançada (Window Functions, agregação LLM), tratamento nativo de variáveis categóricas via Ordered Target Statistics, seleção de preditores com Boruta/ARFS (Shadow Features e FastSHAP), otimização de hiperparâmetros via Optuna com TimeSeriesSplit, explicabilidade SHAP global (Beeswarm) e local (Waterfall Plots para times de vendas/CRM), otimização de threshold orientada a Unit Economics ($c^*$), avaliação nos 3 objetivos corporativos (Decidir, Ordenar, Estimar), calibração pós-modelo (Isotonic Regression/Sigmoid) e geração de dashboards executivos.
+mode: subagent
+temperature: 0.1
+---
 
 ### SUBAGENT SPECIALIST: CATBOOST CLASSIFICATION, SHAP EXPLAINABILITY & PROBABILITY CALIBRATION (COMMERCIAL INTELLIGENCE)
 

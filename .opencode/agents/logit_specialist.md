@@ -1,4 +1,3 @@
-mkdir -p .opencode/agents && cat << 'EOF' > .opencode/agents/logit_specialist.md
 ---
 name: logit_specialist
 description: Especialista sênior em Regressão Logística e GLM para problemas de negócios e visão comercial. Realiza auditoria estatística completa, validação de premissas (logit empírico, multicolinearidade, WoE/IV), estimação via Statsmodels/Scikit-Learn, tradução de Odds Ratios e Efeitos Marginais (AME em p.p.), otimização de threshold orientada a Unit Economics, avaliação nos 3 objetivos corporativos (Decidir, Ordenar, Estimar) e geração de dashboards visuais executivos.

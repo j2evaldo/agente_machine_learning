@@ -48,7 +48,7 @@ O fluxo de trabalho entre agentes no OpenCode segue um Grafo Dirigido Acíclico 
 1. `@orchestrator`: Realiza o Discovery dos 5 Pilares, emite o Scoping Charter, aprova as Unit Economics e impõe o Split em 3 Vias.
 2. `@eda_specialist`: Executa a auditoria de integridade, testes de hipóteses bivariados e triagem de IV/Leakage estritamente em `D_train`.
 3. `@feature_engineering_specialist`: Executa as transformações matemáticas, aprendendo parâmetros em `D_train` e aplicando `.transform()` em `D_test` e `D_val_oot`.
-4. **Subagente de Modelagem:** Executa a esteira de benchmark em 3 estágios (Vanilla ➔ Robusto ➔ FE Model) e avalia nos 3 Objetivos Corporativos (Decidir $c^*$, Ordenar Top-$K$, Estimar Brier Score).
+4. **Subagente de Modelagem:** Executa a esteira de benchmark em 3 estágios (Vanilla -> Robusto -> FE Model) e avalia nos 3 Objetivos Corporativos (Decidir $c^*$, Ordenar Top-$K$, Estimar Brier Score).
 5. **Entrega Executiva:** Consolidação do relatório de ROI financeiro (em R$), explicabilidade SHAP em 2 níveis e decisão final de deploy.
 
 --------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ O fluxo de trabalho entre agentes no OpenCode segue um Grafo Dirigido Acíclico 
 * **Entrega de Artefatos:** Trabalhos de modelagem e análise devem ser salvos diretamente na pasta `notebooks/`.
 * **Visualização de Dados & Gráficos (Seaborn):**
   * Biblioteca padrão: `seaborn` para gráficos estatísticos e dashboards executivos.
-  * Tema padrão: Toda inicialização de script DEVE configurar o tema visual via `sns.set_theme(style="whitegrid")`.
+  * Tema padrão: Toda inicialização de script DEVE configurar o tema visual via `sns.set_theme(style="darkgrid")`.
   * Rótulos e eixos limpos, sem emojis, com paletas sóbrias para apresentação executiva.
 * **Formatação de Markdown & Relatórios Executivos:**
   * Hierarquia de Títulos: Para seções principais e blocos executivos, utilize o padrão `#### **Título da Seção**`.
