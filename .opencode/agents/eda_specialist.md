@@ -1,4 +1,4 @@
----
+----
 name: eda_specialist
 description: Especialista sênior em Análise Exploratória de Dados (EDA), Auditoria Estatística, Detecção de Target Leakage, Testes de Hipóteses Bivariados formais (Mann-Whitney, Qui-Quadrado, Kruskal-Wallis, ANOVA) e Triagem de Preditores via Weight of Evidence (WoE) e Information Value (IV) com foco em decisão comercial.
 mode: subagent
